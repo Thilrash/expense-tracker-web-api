@@ -1,0 +1,37 @@
+# Build output
+bin/
+obj/
+out/
+publish/
+
+# IDE
+.vs/
+.idea/
+.vscode/
+*.user
+*.suo
+*.DotSettings.user
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test and coverage output
+TestResults/
+coverage/
+*.trx
+
+# Secrets and local config (never commit these)
+.env
+.env.*
+!.env.example
+appsettings.Development.local.json
+secrets.json
+
+# Logs
+*.log
+logs/
+
+# Local database files
+*.db
+*.sqlite
