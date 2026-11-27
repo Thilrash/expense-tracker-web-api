@@ -1,10 +1,19 @@
 using Scalar.AspNetCore;
+using ExpenseTracker.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
-builder.Services.AddHealthChecks();
+
+var connectionString = builder.Configuration.GetConnectionString("Default") 
+    ?? throw new InvalidOperationException("Connection string 'Default' is not found.");
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(connectionString));
+
+builder.Services.AddHealthChecks().AddDbContextCheck<AppDbContext>("database");
 
 var app = builder.Build();
 
